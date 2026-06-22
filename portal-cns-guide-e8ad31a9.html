@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 日常查询与延伸阅读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f7f9fc;
+      color: #1e2b3c;
+      line-height: 1.7;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(135deg, #0b1a2a 0%, #1a2f44 100%);
+      padding: 5rem 1.5rem;
+      text-align: center;
+      color: #e6edf5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -10%;
+      width: 120%;
+      height: 60px;
+      background: #f7f9fc;
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: #b8cfeb;
+    }
+
+    /* 浅色正文区 */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.8rem 1.5rem 4rem;
+    }
+
+    .intro-section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.5rem 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .intro-section h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      color: #0b1a2a;
+      border-left: 5px solid #d4a02b;
+      padding-left: 1rem;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-card {
+      background: #f2f6fc;
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      transition: background 0.2s ease;
+    }
+
+    .highlight-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1f3a57;
+    }
+
+    .highlight-card p {
+      font-size: 0.95rem;
+      color: #2d445e;
+    }
+
+    .scenario-box {
+      background: #eef2f7;
+      border-radius: 18px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .scenario-box h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #0b1a2a;
+    }
+
+    .scenario-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .scenario-box li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.6rem;
+      color: #1f3a57;
+    }
+
+    .scenario-box li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #d4a02b;
+      font-weight: bold;
+    }
+
+    .tip-note {
+      background: #ffffff;
+      border: 1px solid #dbe3ed;
+      border-radius: 18px;
+      padding: 1.6rem 2rem;
+      margin: 2.5rem 0 2rem;
+    }
+
+    .tip-note h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: #0b1a2a;
+    }
+
+    .tip-note p {
+      color: #2d445e;
+    }
+
+    .faq-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2.2rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #dce3ed;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #0b1a2a;
+      margin-bottom: 0.35rem;
+    }
+
+    .faq-item p {
+      color: #2d445e;
+      font-size: 0.95rem;
+    }
+
+    /* 强调色链接 */
+    a {
+      color: #b8862c;
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #8f671f;
+      border-bottom-color: #b8862c;
+    }
+
+    .footer-meta {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #dce3ed;
+      font-size: 0.9rem;
+      color: #5b6f87;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 3.2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .intro-section {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-box {
+        padding: 1.2rem 1rem;
+      }
+
+      .tip-note {
+        padding: 1.2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>关于世界杯的日常参照</h1>
+    <p>从赛事数据到文化笔记，一个可以安静对照与延伸阅读的角落</p>
+  </header>
+
+  <div class="container">
+
+    <section class="intro-section">
+      <h2>摘要 · 不止于赛程</h2>
+      <p>
+        很多人会习惯在赛季间隙检索历届冠军、小组对阵或者经典战例。作为一个整合了基础赛事档案与背景资料的页面，<a href="https://portal-cns-fifa.com">世界杯</a> 试图提供一种更安静的参照方式——不依赖推送，不被算法裹挟，只是把被时间筛选过的内容放在那里。你可以把它当作一个备忘录、一本随手翻的赛事手册，或者一个用来延伸阅读的出发点。
+      </p>
+      <p style="margin-top: 1rem;">
+        页面围绕「查询 — 对照 — 延伸」三层逻辑搭建：先找到你想确认的信息，再与同类数据并列比较，最后顺着参考文献或注解进入更深的语境。整个过程没有强制引导，也没有倒计时或弹窗。
+      </p>
+    </section>
+
+    <section class="intro-section">
+      <h2>几个可能对你有用的亮点</h2>
+      <div class="highlight-grid">
+        <div class="highlight-card">
+          <h3>历届结果档案</h3>
+          <p>从早期赛事到最近一届的比赛结果、举办地、最佳射手，按年份整理，方便横向对比。</p>
+        </div>
+        <div class="highlight-card">
+          <h3>球队与地区笔记</h3>
+          <p>每支参赛队伍的简要背景、历史名次和风格标签，适合赛前快速了解对手脉络。</p>
+        </div>
+        <div class="highlight-card">
+          <h3>延伸阅读索引</h3>
+          <p>精选与赛事相关的规则沿革、经典战术分析、文化随笔，每篇都附有来源与日期。</p>
+        </div>
+        <div class="highlight-card">
+          <h3>无广告·轻界面</h3>
+          <p>页面本身不嵌入任何第三方广告或追踪脚本，加载快，阅读区干净。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section">
+      <h2>常见使用场景</h2>
+      <div class="scenario-box">
+        <h3>你可能会这样使用它</h3>
+        <ul>
+          <li><strong>赛前预习</strong> —— 想知道某支球队过去三届的成绩和主要对手，直接翻看球队笔记页。</li>
+          <li><strong>赛后对照</strong> —— 刚看完一场比赛，想确认某位球员的历史进球数，或者某场经典比赛的详细数据。</li>
+          <li><strong>写作或讨论素材</strong> —— 需要引用一届决赛的比分、举办城市或观众人数，当作可靠的一手参考来源。</li>
+          <li><strong>单纯漫游</strong> —— 没有特定目的，只是顺着历届冠军列表或注解文章，读几段足球往事。</li>
+        </ul>
+      </div>
+
+      <div class="tip-note">
+        <h3>一点使用建议</h3>
+        <p>
+          页面内容以事实和整理为主，不提供实时比分或直播链接。如果你需要最新赛况，建议搭配官方数据源一起使用；如果你只是想安静地回顾或延伸阅读，这里可以作为一个轻量起点。所有引用资料均标注了原始出处，方便你进一步核实。
+        </p>
+      </div>
+    </section>
+
+    <section class="intro-section">
+      <h2>FAQ 摘要 · 几个可能会有的疑问</h2>
+      <div class="faq-summary">
+        <div class="faq-item">
+          <strong>这里的资料多久更新一次？</strong>
+          <p>主要档案在每届赛事结束后一个月内完成核对与增补。日常不做频繁变动，以保证内容稳定。</p>
+        </div>
+        <div class="faq-item">
+          <strong>是否有下载或打印版本？</strong>
+          <p>页面本身适配打印样式，你也可以直接使用浏览器打印功能。目前不提供单独打包文件。</p>
+        </div>
+        <div class="faq-item">
+          <strong>可以引用页面中的内容吗？</strong>
+          <p>可以。所有数据均为公开事实整理，但你最好对照原始来源（页面内已附链接）做二次确认。</p>
+        </div>
+        <div class="faq-item">
+          <strong>页面有移动端适配吗？</strong>
+          <p>有。无论在手机还是平板上，排版与交互均做了相应优化，阅读体验保持一致。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-meta">
+      <p>一个安静的赛事档案页面 · 内容仅供个人参考与延伸阅读</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
